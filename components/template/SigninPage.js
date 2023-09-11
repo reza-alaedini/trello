@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 
-function SignupPage() {
+function SigninPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -14,20 +14,18 @@ function SignupPage() {
     if (status === "authenticated") router.replace("/");
   }, [status]);
 
-  const signUpHandler = async () => {
-    const res = await fetch("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
+  const loginHandler = async () => {
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
     });
-    const data = await res.json();
-    console.log(data);
-    if (data.status === "success") router.push("/signin");
-  };
 
+    if (!res.error) router.push("/");
+  };
   return (
     <div className="signin-form">
-      <h3>Registration Form</h3>
+      <h3>Login Form</h3>
       <input
         type="text"
         placeholder="Email"
@@ -40,13 +38,13 @@ function SignupPage() {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={signUpHandler}>Register</button>
+      <button onClick={loginHandler}>Login</button>
       <div>
-        <p>Have an Account?</p>
-        <Link href="/signin">Signin</Link>
+        <p>Create an Account?</p>
+        <Link href="/signup">Sign up</Link>
       </div>
     </div>
   );
 }
 
-export default SignupPage;
+export default SigninPage;
