@@ -10,7 +10,7 @@ const userSchema = new Schema({
     required: true,
   },
   name: String,
-  LastName: String,
+  lastName: String,
   todos: [{ title: String, status: String }],
   createdAt: {
     type: Date,
