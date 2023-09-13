@@ -18,7 +18,7 @@ function ProfilePage() {
   const fetchProfile = async () => {
     const res = await fetch("/api/profile");
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     if (
       data.status === "success" &&
       data.data.name &&

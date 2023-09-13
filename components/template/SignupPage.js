@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,20 @@ function SignupPage() {
     });
     const data = await res.json();
     console.log(data);
-    if (data.status === "success") router.push("/signin");
+    if (data.status === "success") {
+      toast.success("User Added!", {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+      router.push("/signin");
+    } else if (data.status === "failed") {
+      toast.error(data.message, {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+    }
   };
 
   return (

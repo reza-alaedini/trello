@@ -23,6 +23,11 @@ function SigninPage() {
     });
 
     if (!res.error) {
+      toast.success("Welcome!", {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
       router.push("/");
     } else {
       toast.error(res.error, {
