@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // icons
 import { VscListSelection } from "react-icons/vsc";
@@ -44,6 +46,7 @@ function Layout({ children }) {
         </aside>
         <section>{children}</section>
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 function SigninPage() {
   const [email, setEmail] = useState("");
@@ -21,7 +22,15 @@ function SigninPage() {
       redirect: false,
     });
 
-    if (!res.error) router.push("/");
+    if (!res.error) {
+      router.push("/");
+    } else {
+      toast.error(res.error, {
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+    }
   };
   return (
     <div className="signin-form">

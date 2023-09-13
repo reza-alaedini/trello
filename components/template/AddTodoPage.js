@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { GrAddCircle } from "react-icons/gr";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 import RadioButton from "../module/RadioButton";
 
@@ -35,7 +34,6 @@ function AddTodoPage() {
         closeOnClick: true,
       });
     }
-
   };
   return (
     <div className="add-form">
@@ -89,7 +87,6 @@ function AddTodoPage() {
         </div>
         <button onClick={addHanlder}>Add</button>
       </div>
-      <ToastContainer />
     </div>
   );
 }
