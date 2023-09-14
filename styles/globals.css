@@ -359,3 +359,15 @@ button {
 .signin-form a {
   color: #3f47f4;
 }
+
+/* My Styles */
+.add-form__textBox {
+  margin-top: 20px;
+}
+.add-form__textBox label {
+  display: block;
+}
+.add-form__textBox textarea {
+  margin-top: 10px;
+  font-size: 1.1rem;
+}

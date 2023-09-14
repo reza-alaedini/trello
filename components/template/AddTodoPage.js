@@ -12,22 +12,33 @@ import { MdDoneAll } from "react-icons/md";
 
 function AddTodoPage() {
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [status, setStatus] = useState("todo");
 
   const addHanlder = async () => {
     const id = toast.loading("Please Wait ... ⌛");
     const res = await fetch("/api/todos", {
       method: "POST",
-      body: JSON.stringify({ title, status }),
+      body: JSON.stringify({ title, status, description }),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
     if (data.status === "success") {
       setTitle("");
       setStatus("todo");
+      setDescription("");
       toast.update(id, {
         render: "Todo Added Successfully!",
         type: "success",
+        isLoading: false,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+      });
+    } else if (data.status === "failed") {
+      toast.update(id, {
+        render: data.message,
+        type: "error",
         isLoading: false,
         autoClose: 5000,
         hideProgressBar: false,
@@ -50,6 +61,16 @@ function AddTodoPage() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          <div className="add-form__textBox">
+            <label htmlFor="desc">Description:</label>
+            <textarea
+              id="desc"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows="4"
+              cols="50"
+            />
+          </div>
         </div>
         <div className="add-form__input--second">
           <RadioButton
