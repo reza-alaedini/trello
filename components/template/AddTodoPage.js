@@ -76,6 +76,7 @@ function AddTodoPage() {
           <RadioButton
             value="todo"
             title="Todo"
+            useFor="add"
             status={status}
             setStatus={setStatus}
           >
@@ -84,6 +85,7 @@ function AddTodoPage() {
           <RadioButton
             value="inProgress"
             title="In Progress"
+            useFor="add"
             status={status}
             setStatus={setStatus}
           >
@@ -92,6 +94,7 @@ function AddTodoPage() {
           <RadioButton
             value="review"
             title="Review"
+            useFor="add"
             status={status}
             setStatus={setStatus}
           >
@@ -100,6 +103,7 @@ function AddTodoPage() {
           <RadioButton
             value="done"
             title="Done"
+            useFor="add"
             status={status}
             setStatus={setStatus}
           >

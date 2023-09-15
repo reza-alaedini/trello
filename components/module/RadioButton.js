@@ -1,4 +1,12 @@
-function RadioButton({ children, value, title, status, setStatus }) {
+function RadioButton({
+  children,
+  value,
+  title,
+  status,
+  setStatus,
+  useFor,
+  selectedTodo,
+}) {
   return (
     <div className={value}>
       <label htmlFor={value}>
@@ -10,7 +18,11 @@ function RadioButton({ children, value, title, status, setStatus }) {
         type="radio"
         value={value}
         checked={status === value}
-        onChange={(e) => setStatus(e.target.value)}
+        onChange={
+          useFor === "add"
+            ? (e) => setStatus(e.target.value)
+            : (e) => setStatus({ ...selectedTodo, status: e.target.value })
+        }
       />
     </div>
   );

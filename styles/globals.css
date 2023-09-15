@@ -371,3 +371,27 @@ button {
   margin-top: 10px;
   font-size: 1.1rem;
 }
+.myDesc {
+  text-align: left !important;
+  padding: 10px !important;
+  margin: 10px 0;
+  font-size: 1.2rem !important;
+  border-radius: 5px !important;
+}
+.myIcons__edit {
+  background-color: rgb(243, 167, 114);
+  font-size: 1.5rem;
+  padding: 1px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: rgb(79, 76, 76);
+}
+
+.edit-form__buttons {
+  display: flex;
+}
+.edit-form__buttons .delete {
+  background-color: #ef4444;
+  color: white;
+  margin: 0 40px;
+}
