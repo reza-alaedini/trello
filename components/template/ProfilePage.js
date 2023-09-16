@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProfileForm from "../module/ProfileForm";
+import { toast } from "react-toastify";
 
 // icons
 import { CgProfile } from "react-icons/cg";
@@ -36,7 +37,19 @@ function ProfilePage() {
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
-    // console.log(data);
+    console.log(data);
+    if (data.status === "success") {
+      toast.success("User information updated!", {
+        autoClose: 5000,
+        closeOnClick: true,
+      });
+      fetchProfile();
+    } else {
+      toast.error(data.message, {
+        autoClose: 5000,
+        closeOnClick: true,
+      });
+    }
   };
 
   return (
