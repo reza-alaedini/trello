@@ -27,7 +27,7 @@ function TodoId() {
   const fetchTodo = async () => {
     const res = await fetch(`/api/todos/${todoId}`);
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     if (data.status === "success") setSelectedTodo(data.todo);
   };
 
@@ -39,7 +39,7 @@ function TodoId() {
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     if (data.status === "success") {
       fetchTodo();
       toast.update(id, {
@@ -53,10 +53,28 @@ function TodoId() {
     }
   };
 
-  const deleteHandler = () => {
+  const deleteHandler = async () => {
     const result = window.confirm("Are You Sure?");
 
-    console.log(result);
+    if (result) {
+      const res = await fetch(`/api/todos/${todoId}`, {
+        method: "DELETE",
+        body: JSON.stringify({ id: todoId }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      // console.log(data);
+      if (data.status === "success") {
+        toast.success(data.message, {
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+        router.replace("/");
+      }
+    } else {
+      return;
+    }
   };
 
   return (

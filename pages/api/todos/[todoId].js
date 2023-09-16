@@ -29,6 +29,7 @@ async function handler(req, res) {
         .json({ status: "failed", message: "Todo not found!" });
     }
 
+    // array destructuring
     const [selectedTodo] = todo.todos.filter((i) => String(i._id) === todoId);
 
     res.status(200).json({ status: "success", todo: selectedTodo });
@@ -57,7 +58,19 @@ async function handler(req, res) {
       .status(200)
       .json({ status: "success", message: "Todo updated successfully!" });
   } else if (req.method === "DELETE") {
-    
+    const { id } = req.body;
+
+    const result = await User.findOneAndUpdate(
+      { "todos._id": id },
+      {
+        $pull: { todos: { _id: id } },
+      },
+      { new: true }
+    );
+
+    res
+      .status(202)
+      .json({ status: "success", message: "Todo deleted successfully!" });
   }
 }
 
