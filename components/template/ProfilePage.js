@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProfileForm from "../module/ProfileForm";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 // icons
 import { CgProfile } from "react-icons/cg";
@@ -71,6 +72,9 @@ function ProfilePage() {
           submitHandler={submitHandler}
         />
       )}
+      <button>
+        <Link href="/edit-profile">Edit</Link>
+      </button>
     </div>
   );
 }

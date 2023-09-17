@@ -51,12 +51,28 @@ async function handler(req, res) {
       data: { name, lastName, email: session.user.email },
     });
   } else if (req.method === "GET") {
-    res
-      .status(200)
-      .json({
-        status: "success",
-        data: { name: user.name, lastName: user.lastName, email: user.email },
-      });
+    res.status(200).json({
+      status: "success",
+      data: { name: user.name, lastName: user.lastName, email: user.email },
+    });
+  } else if (req.method === "PATCH") {
+    const { name, lastName, password } = req.body;
+    if (!name || !lastName || !password) {
+      return res
+        .status(400)
+        .json({ status: "failed", message: "Invalid data!" });
+    }
+
+    const isValid = await verifyPassword(password, user.password);
+    if (!isValid) {
+      return res
+        .status(400)
+        .json({ status: "failed", message: "Password is incorrect!" });
+    }
+
+    user.name = name;
+    user.lastName = lastName;
+    user.save();
   }
 }
 
