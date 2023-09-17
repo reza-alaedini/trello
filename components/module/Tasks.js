@@ -19,7 +19,7 @@ function Tasks({ data, next, back, fetchTodos }) {
       {data?.map((i) => (
         <div key={i._id} className="tasks__card">
           <span className={i.status}></span>
-          <div className="myIcons">
+          <div className="myIcons" title="Edit Todo">
             <RiMastodonLine />
             <BiEdit
               className="myIcons__edit"
