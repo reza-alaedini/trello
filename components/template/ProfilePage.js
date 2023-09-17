@@ -70,6 +70,7 @@ function ProfilePage() {
           setLastName={setLastName}
           setPassword={setPassword}
           submitHandler={submitHandler}
+          useFor="add"
         />
       )}
       <button>

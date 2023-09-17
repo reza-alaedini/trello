@@ -6,6 +6,9 @@ function ProfileForm({
   setLastName,
   setPassword,
   submitHandler,
+  useFor,
+  info,
+  setInfo,
 }) {
   return (
     <>
@@ -16,7 +19,11 @@ function ProfileForm({
             id="name"
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={
+              useFor === "add"
+                ? (e) => setName(e.target.value)
+                : (e) => setInfo({ ...info, name: e.target.value })
+            }
           />
         </div>
         <div>
@@ -25,7 +32,11 @@ function ProfileForm({
             id="last-name"
             type="text"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={
+              useFor === "add"
+                ? (e) => setLastName(e.target.value)
+                : (e) => setInfo({ ...info, lastName: e.target.value })
+            }
           />
         </div>
         <div>
