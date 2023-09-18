@@ -1,5 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Trello Full-Stack App</h1>
 
+
+## Concepts used:
+- Working with MongoDB Atlas service
+- CRUD Actions in database with "mongoose" package
+- Develop APIs for each request to server with "api" folder in Next JS
+- Authentication & Authorization with next-auth, JWT and Cookie 
+- Server-Side Page protection
+
+  
 ## Getting Started
 
 First, run the development server:
